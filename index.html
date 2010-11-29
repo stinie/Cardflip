@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html lang="en" manifest="cardflip.manifest"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Card Flip</title>
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" />
+<link rel="apple-touch-startup-image" href="splashscreen.png" />
+<link rel="stylesheet" href="styles.css" media="screen"/>
+<link rel="apple-touch-icon" href="iOS-114.png" /> 
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6471139-3']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script');
+ga.src = ('https:' == document.location.protocol ?
+    'https://ssl' : 'http://www') +
+    '.google-analytics.com/ga.js';
+ga.setAttribute('async', 'true');
+document.documentElement.firstChild.appendChild(ga);
+})();
+</script>
+</head>
+<body>
+	<div id="menu">
+		<h1>Card Flip</h1>
+		<div class="homecard">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&hearts;</p></div>
+		</div>
+		<p class="introtext">Turn over and match pairs of identical cards to win. Try and beat your fastest time in the least number of turns!</p>
+		<button id="new">New Game</button>
+		<button id="score">High Score</button>
+	</div>
+
+	<div id="container" class="container">
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&clubs;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&spades;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&loz;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&loz;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&dagger;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&diams;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&hearts;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&clubs;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&spades;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&diams;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&hearts;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&dagger;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&infin;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&Dagger;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&infin;</p></div>
+		</div>
+		<div class="card">
+			<div class="front face"><p>?</p></div><div class="back face"><p>&Dagger;</p></div>
+		</div>
+	</div>
+</body>
+</html>
