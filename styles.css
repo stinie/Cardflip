@@ -7,7 +7,7 @@
  * Released under MIT license
  * http://miniapps.co.uk/license/
  * 
- * Version 1.3.1 - Last updated: Nov 29 2010
+ * Version 1.3.1
  * 
  */
  
@@ -91,21 +91,29 @@ h1 {
 }
 
 button {
-    background: #4a6c9b;
-    background: -webkit-gradient(linear, left top, left bottom, from(#8ea4c1), to(#4a6c9b));
-    background: -moz-linear-gradient(top, #8ea4c1, #4a6c9b);
+	background: #8EA4C1;
+	background: -webkit-gradient(linear, left top, left bottom, from(#8EA4C1), color-stop(.5,#5877A2), color-stop(.5,#476999), to(#4A6C9B));
+	background: -moz-linear-gradient(top, #8EA4C1, #5877A2 50%, #476999 50%, #4A6C9B);
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
     border-radius: 7px;
     border: 1px solid #2B3942;
-    height: 28px;
+    height: 44px;
     font-size: 12px;
     font-weight:bold;
     color: #ffffff;
     text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
     cursor: pointer;
+}
 
-} 
+button:active {
+    border: 1px solid #2B3942;
+	background: -webkit-gradient(linear, left top, left bottom, from(#4A6C9B), color-stop(.5,#476999), color-stop(.5,#5877A2), to(#8EA4C1));
+	background: -moz-linear-gradient(top, #4A6C9B, #476999 50%, #5877A2 50%, #8EA4C1);
+	-moz-box-shadow: inset 0 2px 3px rgba(0,0,0,0.2);
+   	-webkit-box-shadow: inset 0 2px 3px rgba(0,0,0,0.2);
+   	box-shadow: inset 0 2px 3px rgba(0,0,0,0.2);
+}
 
 #menu button {
 	position: relative;

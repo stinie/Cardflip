@@ -377,6 +377,9 @@ function loaded() {
   	if ((typeof(localStorage) == 'undefined')) {
   		alert("Your browser does not support localStorage. You high score will not be saved.");
   	}
+  	
+  	//hack to enable active pseudo selectors on buttons in mobile webkit
+	document.addEventListener("touchstart",new Function(),false);
 			
 	document.getElementById('new').addEventListener('click', newGame, false);	
 	document.getElementById('score').addEventListener('click', highScore, false);
