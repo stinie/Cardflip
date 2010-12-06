@@ -7,8 +7,6 @@
  * Released under MIT license
  * http://miniapps.co.uk/license/
  * 
- * Version 1.4 - Last updated: March 31 2010
- * 
  */
 
 var cardflip = {
@@ -369,7 +367,7 @@ function loaded() {
 	
 	//prevent scrolling if app is running full screen
   	if (window.navigator.standalone) {
-  		document.addEventListener('touchmove', function() {
+  		document.addEventListener('touchmove', function(e) {
   			e.preventDefault();
   		}, false);
   	}
@@ -379,7 +377,7 @@ function loaded() {
   	}
   	
   	//hack to enable active pseudo selectors on buttons in mobile webkit
-	document.addEventListener("touchstart",new Function(),false);
+	document.getElementById('menu').addEventListener("touchstart",new Function(),false);
 			
 	document.getElementById('new').addEventListener('click', newGame, false);	
 	document.getElementById('score').addEventListener('click', highScore, false);
