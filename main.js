@@ -8,21 +8,24 @@
  * http://miniapps.co.uk/license/
  * 
  */
+ 
+/*global window, QUOTA_EXCEEDED_ERR, alert, confirm */
 
 var cardflip = {
 
-	turn: 1, //first or second turn of card
-	firstcard: null, //first choice
-	secondcard: null, //second choice
-	totalturns: 0, //total no of turns
-	starttime: null, //game start time
-	deck: null, //array of all cards
-	moved: false, //checks for touch move
-	locked: false, //turns lock
-	container : null,
-	menu : null,
+	turn: 1,			//first or second turn of card
+	firstcard: null,	//first choice
+	secondcard: null,	//second choice
+	totalturns: 0,		//total no of turns
+	starttime: null,	//game start time
+	deck: null,			//array of all cards
+	moved: false,		//checks for touch move
+	locked: false,		//turns lock
+	container: null,
+	menu: null,
 	
 	handleEvent: function(e) {
+	
 		switch(e.type) {
 			case 'touchstart': this.onTouchStart(e); break;
 			case 'touchmove': this.onTouchMove(e); break;
@@ -53,16 +56,17 @@ var cardflip = {
 		//deal
 		this.deck = [];	
 		this.deck = document.querySelectorAll('.card');
+		var i = 0;
 	
-		for (var i = 0; i < this.deck.length; i++) {
-   			this.deck[i].innerHTML = '<div class="front face"><p>?</p></div><div class="back face"><p>' + cards[i] + '</p></div>';
-  		}
-  		
+		for (i = 0; i < this.deck.length; i++) {
+			this.deck[i].innerHTML = '<div class="front face"><p>?</p></div><div class="back face"><p>' + cards[i] + '</p></div>';
+		}
+
 		//add touch click listeners
-		for (var i = 0; i < this.deck.length; i++) {
+		for (i = 0; i < this.deck.length; i++) {
 			this.deck[i].addEventListener('touchstart', this, false);
 			this.deck[i].addEventListener('mousedown', this, false);
-  		}	
+		}	
 	},
 
 	onTouchStart: function(e) {
@@ -226,8 +230,8 @@ var cardflip = {
 			if (this.firstcard.innerHTML === this.secondcard.innerHTML) {
 				this.firstcard.className = 'matched';
 				this.secondcard.className = 'matched';
-    		}
-    		//if not, flip back over
+			}
+			//if not, flip back over
 			else {
 				this.firstcard.className = 'card';
 				this.secondcard.className = 'card';
@@ -262,8 +266,8 @@ var cardflip = {
 				var seconds = Math.floor(time % 60);
 		
 				//get high score from storage
-				var recordtime = localStorage.getItem('time');
-				var recordturns = localStorage.getItem('turns');
+				var recordtime = window.localStorage.getItem('time');
+				var recordturns = window.localStorage.getItem('turns');
 		
 				//calculate high score
 				if (recordtime !== null) {
@@ -278,8 +282,8 @@ var cardflip = {
 					alert('Congratulations! New high score!\n\n Time: ' + minutes + 'm' + seconds + 's, ' + tTurns + ' turns.');
 					//save new high score
 					try {
-						localStorage.setItem('time', difference);
-						localStorage.setItem('turns', tTurns);
+						window.localStorage.setItem('time', difference);
+						window.localStorage.setItem('turns', tTurns);
 					} catch (e) {
 						if (e == QUOTA_EXCEEDED_ERR) {
 							alert('Quota exceeded!');
@@ -296,9 +300,9 @@ var cardflip = {
 				
 				//flip cards back over
 				for (var i = 0; i < matched.length; i++) {
-   					matched[i].className = 'card';
-  				}				
-  				//initialize a new game
+					matched[i].className = 'card';
+				}				
+				//initialize a new game
 				var pauseForNewGame = setTimeout(function() {
 				
 					var answer = confirm("Play again?");
@@ -313,8 +317,8 @@ var cardflip = {
 					
 						container.style.display = 'none';
 						menu.style.display = 'block';
-  					
-  						document.getElementById('new').addEventListener('click', newGame, false);	
+
+						document.getElementById('new').addEventListener('click', newGame, false);	
 						document.getElementById('score').addEventListener('click', highScore, false);		
 					}				
 				},501);				
@@ -323,27 +327,12 @@ var cardflip = {
 	}	
 };
 
-//closes the menu and displays the game board
-function newGame() {
-
-	document.getElementById('new').removeEventListener('click', newGame, false);	
-	document.getElementById('score').removeEventListener('click', highScore, false);
-	
-	var container = document.getElementById('container');
-	var menu = document.getElementById('menu');
-  		
-  	menu.style.display = 'none';
-  	container.style.display = 'block';
-  		
-  	cardflip.init();
-}
-
 //get high score for game menu
 function highScore() {
 
 	//get record time and turns
-	var recordtime = localStorage.getItem('time');
-	var recordturns = localStorage.getItem('turns');
+	var recordtime = window.localStorage.getItem('time');
+	var recordturns = window.localStorage.getItem('turns');
 		
 	//calculate high score
 	if (recordtime !== null) {
@@ -363,22 +352,38 @@ function highScore() {
 	}	
 }
 
+//closes the menu and displays the game board
+function newGame() {
+
+	document.getElementById('new').removeEventListener('click', newGame, false);	
+	document.getElementById('score').removeEventListener('click', highScore, false);
+	
+	var container = document.getElementById('container');
+	var menu = document.getElementById('menu');
+	
+	menu.style.display = 'none';
+	container.style.display = 'block';
+	
+	cardflip.init();
+}
+
 function loaded() {
 	
 	//prevent scrolling if app is running full screen
-  	if (window.navigator.standalone) {
-  		document.addEventListener('touchmove', function(e) {
-  			e.preventDefault();
-  		}, false);
-  	}
-  	
-  	if ((typeof(localStorage) == 'undefined')) {
-  		alert("Your browser does not support localStorage. You high score will not be saved.");
-  	}
-  	
-  	//hack to enable active pseudo selectors on buttons in mobile webkit
-	document.getElementById('menu').addEventListener("touchstart",new Function(),false);
-			
+	if (window.navigator.standalone) {
+	
+		document.addEventListener('touchmove', function(e) {
+			e.preventDefault();
+		}, false);
+	}
+
+	if ((typeof(window.localStorage) == 'undefined')) {
+		alert("Your browser does not support localStorage. You high score will not be saved.");
+	}
+
+	//hack to enable active pseudo selectors on buttons in mobile webkit
+	document.getElementById('menu').addEventListener("touchstart", function() {},false);
+		
 	document.getElementById('new').addEventListener('click', newGame, false);	
 	document.getElementById('score').addEventListener('click', highScore, false);
 
